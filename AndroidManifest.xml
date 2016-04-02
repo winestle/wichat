@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.chat.freshim"
+    android:versionCode="1"
+    android:versionName="0.1">
+	
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="19" />
+    
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- FOR QB -->
+     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    
+     <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera.flash"/>
+    
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    
+    <!-- For GCM -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	
+    <!-- For GCM -->
+    <permission android:name=".permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name=".permission.C2D_MESSAGE" />
+	
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    
+        
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_fresh"
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme">
+        <activity
+            android:name="com.chat.freshim.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/app_name" 
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />				
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.chat.freshim.FriendsListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:theme="@style/NoActionBar"/>
+        
+        <activity 
+            android:name="com.chat.freshim.FriendsAllListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        
+        <activity 
+            android:name="com.chat.freshim.FriendsDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity 
+            android:name="com.chat.freshim.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity 
+            android:name="com.chat.freshim.UserDetailActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity 
+            android:name="com.chat.freshim.StatusActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity 
+            android:name="com.chat.freshim.SettingsActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity 
+            android:name="com.chat.freshim.EditProfileActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity
+            android:name="com.chat.freshim.EditPasswordActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupCreateActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupMessageDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupChooseFriendListActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity
+            android:name="com.chat.freshim.GroupEditMemberListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity
+            android:name="com.chat.freshim.UploadFileActivity"
+            android:screenOrientation="portrait"/>
+        
+        <activity 
+            android:name="com.chat.freshim.CountryCodesActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity 
+            android:name="com.chat.freshim.InviteFriends"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <activity 
+            android:name="com.chat.freshim.AddContactFriend"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        
+        <!-- QB ACTIVITY AND SERVICES -->
+         <activity
+            android:name="com.chat.freshim.qb.ActivityVideoChat"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBar"/>
+        	
+          <activity
+            android:name="com.chat.freshim.qb.ActivityCallUser"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+         
+        <service android:name="com.quickblox.module.videochat.core.service.QBVideoChatService"/>
+        <!-- For GCM -->  
+        <receiver
+            android:name="com.chat.freshim.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.chat.imapp" />
+            </intent-filter>
+        </receiver>
+        
+        <service android:name="com.chat.freshim.services.GcmIntentService" />
+        
+        <service android:name="com.chat.freshim.services.LoadImageService" />
+        <service android:name="com.chat.freshim.services.LoadFileService" />
+        
+        <service android:name="com.chat.freshim.services.ResponseRequestService" />
+        <service android:name="com.chat.freshim.services.FriendRequestService" />
+        
+        <service android:name="com.chat.freshim.services.DownLoadFileService" />
+        <service android:name="com.chat.freshim.services.DownloadImageService" />
+        
+        <service android:name="com.chat.freshim.services.LastSeenGetService" />
+        <service android:name="com.chat.freshim.services.LastSeenSetService" />
+        
+        <service android:name="com.chat.freshim.services.QbRegisterService" />
+        
+        <!--service android:name="com.quickblox.module.chat.videochat.VideoChatService"/-->
+        
+        <!-- For GCM -->         
+        <meta-data 
+             android:name="com.google.android.gms.version" 
+             android:value="@integer/google_play_services_version" />
+        
+    </application>
+
+</manifest>
